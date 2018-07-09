@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  var animation = displayRandomNums(document.getElementById('sudoku-board'));
-
+  var gridElement = document.getElementById('sudoku-board');
+  var animation = displayRandomNums(gridElement);
+  getSudokuAsync().then((grid) => {
+    window.clearInterval(animation);
+    gridElement.innerHTML = printGrid(grid);
+  });
 }
 
 function displayRandomNums(element) {
@@ -35,4 +39,17 @@ function printGrid(gridArray) {
     }
   }
   return text;
+}
+
+function getSudokuAsync() {
+  return new Promise((resolve) => {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+      if (req.readyState === 4 && req.status === 200) {
+        resolve(JSON.parse(req.responseText));
+      }
+    }
+    req.open("GET", window.location + "sudoku/board", true);
+    req.send(null);
+  });
 }
