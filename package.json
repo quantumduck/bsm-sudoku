@@ -2,7 +2,7 @@
   "name": "bsm-sudoku",
   "version": "1.0.0",
   "description": "BSM sudoku coding project",
-  "main": "sudokuApi.js",
+  "main": "app/app.js",
   "scripts": {
     "test": "./node_modules/.bin/jasmine-node spec"
   },

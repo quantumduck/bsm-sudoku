@@ -72,22 +72,3 @@ function isValid(grid, index) {
   }
   return true;
 }
-
-function printGrid(gridArray) {
-  var line = "+-------+-------+-------+\n";
-  var text = line;
-  for (var i = 0; i < 9; i++) {
-    var text = text + "| ";
-    for (var j = 0; j < 9; j++) {
-      text = text + gridArray[9 * i + j] + " ";
-      if (j % 3 === 2) {
-        text = text + "| ";
-      }
-    }
-    text = text + "\n";
-    if (i % 3 === 2) {
-      text = text + line;
-    }
-  }
-  console.log(text);
-}
