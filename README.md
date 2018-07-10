@@ -17,12 +17,12 @@ Running the command `npm install` in the root of the repository will install and
 ## Tools
 This is the first time I attempted my own Node.js project from scratch. I considered using Ruby on Rails, which I did a lot of a year ago, but thought this would be a good opportunity to learn something.
 
-Both the API and front end are served from the same file `app/app.js`, which uses [here](https://expressjs.com/). This seemed to be the simplest way to get a server up and running, given that it was a relatively simple project.
+Both the API and front end are served from the same file `app/app.js`, which uses [express](https://expressjs.com/). This seemed to be the simplest way to get a server up and running, given that it was a relatively simple project.
 
 Jasmine was also added as a dependency so that tests could be written
 
 ## Algorithm
-The API depends on `app/sudoku.js`, which runs the algorithm that generates a random sudoku board. I found this algorithm at [https://www.codeproject.com/articles/23206/sudoku-algorithm-generates-a-valid-sudoku-in]. It seemed reasonably efficient and had a block diagram that make it relatively easy to implement using a `while` loop. It seems to run fast, even in JavaScript. When running in combination with the single page app, there is no visible delay.
+The API depends on `app/sudoku.js`, which runs the algorithm that generates a random sudoku board. I found this algorithm at (https://www.codeproject.com/articles/23206/sudoku-algorithm-generates-a-valid-sudoku-in). It seemed reasonably efficient and had a block diagram that make it relatively easy to implement using a `while` loop. It seems to run fast, even in JavaScript. When running in combination with the single page app, there is no visible delay.
 
 ## Single Page App
 The single page app is served from the root of [localhost:8080/]. Since there was not a lot that it was required to do, I did not use any frameworks, but just included a set of static files in the directory `app/spa`. The HTML file was based on another simple text-based app from one of my repositories, and the main logic in `app/spa/js/main.js` is to draw an array of 81 integers on a sudoku board.
@@ -44,7 +44,7 @@ This code only works if a mono-space font is used, so there are some obvious dra
 ### Level 2
 1. Single command: See above
 2. Unit testing: No additional tests were made for the app itself.
-3. Nginx: I did not get very far researching this at [https://nginx.org/en/docs/beginners_guide.html]. This seems like a major topic that I should just admit I don't yet have much experience with. This was the most significant roadblock preventing me from completing the first two levels.
+3. Nginx: I did not get very far researching this at (https://nginx.org/en/docs/beginners_guide.html). This seems like a major topic that I should just admit I don't yet have much experience with. This was the most significant roadblock preventing me from completing the first two levels.
 4. Load the board: The site loads the board very quickly
 5. Progress spinner: This works in theory, but only if there is an artificial delay on calling the API. There is a button specifically for showing the loading animation.
 6. Reload: The reload button works as expected.
