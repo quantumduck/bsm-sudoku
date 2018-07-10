@@ -50,7 +50,6 @@ This code only works if a mono-space font is used, so there are some obvious dra
 4. Load the board: The site loads the board very quickly
 5. Progress spinner: This works in theory, but only if there is an artificial delay on calling the API. There is a button specifically for showing the loading animation.
 6. Reload: The reload button works as expected.
-
 7. Validity: see above
 8. Documentation: see above
 
