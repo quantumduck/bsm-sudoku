@@ -4,7 +4,7 @@
 This project uses an algorithm to generate a valid sudoku grid and serves it via an API to the endpoint [localhost:8080/sudoku/board]
 
 ## Building and running
-This project requires the commands `node` and `npm` to be installed. Instructions can be found [https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04](here) or by entering the following in the terminal (results may vary depending on your shell.):
+This project requires the commands `node` and `npm` to be installed. Instructions can be found [here](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04) or by entering the following in the terminal (results may vary depending on your shell.):
 ```
 $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 $ source ~/.bashrc
@@ -17,7 +17,7 @@ Running the command `npm install` in the root of the repository will install and
 ## Tools
 This is the first time I attempted my own Node.js project from scratch. I considered using Ruby on Rails, which I did a lot of a year ago, but thought this would be a good opportunity to learn something.
 
-Both the API and front end are served from the same file `app/app.js`, which uses [https://expressjs.com/](express). This seemed to be the simplest way to get a server up and running, given that it was a relatively simple project.
+Both the API and front end are served from the same file `app/app.js`, which uses [here](https://expressjs.com/). This seemed to be the simplest way to get a server up and running, given that it was a relatively simple project.
 
 Jasmine was also added as a dependency so that tests could be written
 
