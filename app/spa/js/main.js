@@ -1,12 +1,30 @@
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  var gridElement = document.getElementById('sudoku-board');
-  var animation = displayRandomNums(gridElement);
-  getSudokuAsync().then((grid) => {
-    window.clearInterval(animation);
+  reload();
+  var reloadButton = document.getElementById("reloadButton");
+  reloadButton.addEventListener("click", reload);
+  var waitButton = document.getElementById("waitButton");
+  waitButton.addEventListener("click", wait);
+}
+
+function reload() {
+  var gridElement = document.getElementById("sudoku-board");
+  var messageElement = document.getElementById("message-box");
+  window.clearInterval(window.loadingAnimation);
+  wait();
+  getSudokuAsync().then(function(grid) {
+    window.clearInterval(window.loadingAnimation);
     gridElement.innerHTML = printGrid(grid);
+    messageElement.innerHTML = "Done :)";
   });
+}
+
+function wait() {
+  var gridElement = document.getElementById("sudoku-board");
+  var messageElement = document.getElementById("message-box");
+  messageElement.innerHTML = "Please wait...";
+  window.loadingAnimation = displayRandomNums(gridElement);
 }
 
 function displayRandomNums(element) {
