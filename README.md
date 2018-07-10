@@ -19,13 +19,15 @@ This is the first time I attempted my own Node.js project from scratch. I consid
 
 Both the API and front end are served from the same file `app/app.js`, which uses [express](https://expressjs.com/). This seemed to be the simplest way to get a server up and running, given that it was a relatively simple project.
 
-Jasmine was also added as a dependency so that tests could be written
+The single page app does not use any frameworks. This decision was mostly made because I like using plain JavaScript with as few dependencies as possible. It also makes the page load very quickly.
+
+Jasmine was added as a dependency so that tests could be written.
 
 ## Algorithm
 The API depends on `app/sudoku.js`, which runs the algorithm that generates a random sudoku board. I found this algorithm at https://www.codeproject.com/articles/23206/sudoku-algorithm-generates-a-valid-sudoku-in. It seemed reasonably efficient and had a block diagram that make it relatively easy to implement using a `while` loop. It seems to run fast, even in JavaScript. When running in combination with the single page app, there is no visible delay.
 
 ## Single Page App
-The single page app is served from the root of [localhost:8080/]. Since there was not a lot that it was required to do, I did not use any frameworks, but just included a set of static files in the directory `app/spa`. The HTML file was based on another simple text-based app from one of my repositories, and the main logic in `app/spa/js/main.js` is to draw an array of 81 integers on a sudoku board.
+The single page app is served from the root of [localhost:8080/]. The HTML file was based on another simple text-based app from one of my repositories, and the main logic in `app/spa/js/main.js` is to draw an array of 81 integers on a sudoku board.
 
 The other function of `main.js` is to provide an animation while waiting for the API response. Unfortunately, the response is so fast that this never actually gets seen without programming in an artificial delay.
 
