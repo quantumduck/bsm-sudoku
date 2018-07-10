@@ -1,10 +1,10 @@
 # Coding Take-Home Project for BSM: Sudoku App
 
 ## Description
-This project uses an algorithm to generate a valid sudoku grid and serves it via an API to the endpoint [localhost:8080/sudoku/board]
+This project uses an algorithm to generate a valid sudoku grid and serves it via an API to the endpoint http://localhost:8080/sudoku/board. The
 
 ## Building and running
-This project requires the commands `node` and `npm` to be installed. Instructions can be found [here](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04) or by entering the following in the terminal (results may vary depending on your shell.):
+This project requires the commands `node` and `npm` to be installed. Instructions can be found [here](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04) or by entering the following in the terminal (results may vary if you use a shell other than bash or the configuration is not stored in `.bashrc`):
 ```
 $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 $ source ~/.bashrc
@@ -12,7 +12,7 @@ $ nvm install 8.11.3
 $ nvm use 8.11.3
 ```
 
-Running the command `npm install` in the root of the repository will install and build the dependencies. The app itself can be started with `node app/app.js`.
+Running the command `npm install` in the root of the repository will install and build the dependencies. The test file can be run with `npm test`. The app itself can be started with `node app/app.js`.
 
 ## Tools
 This is the first time I attempted my own Node.js project from scratch. I considered using Ruby on Rails, which I did a lot of a year ago, but thought this would be a good opportunity to learn something.
@@ -22,7 +22,7 @@ Both the API and front end are served from the same file `app/app.js`, which use
 Jasmine was also added as a dependency so that tests could be written
 
 ## Algorithm
-The API depends on `app/sudoku.js`, which runs the algorithm that generates a random sudoku board. I found this algorithm at (https://www.codeproject.com/articles/23206/sudoku-algorithm-generates-a-valid-sudoku-in). It seemed reasonably efficient and had a block diagram that make it relatively easy to implement using a `while` loop. It seems to run fast, even in JavaScript. When running in combination with the single page app, there is no visible delay.
+The API depends on `app/sudoku.js`, which runs the algorithm that generates a random sudoku board. I found this algorithm at https://www.codeproject.com/articles/23206/sudoku-algorithm-generates-a-valid-sudoku-in. It seemed reasonably efficient and had a block diagram that make it relatively easy to implement using a `while` loop. It seems to run fast, even in JavaScript. When running in combination with the single page app, there is no visible delay.
 
 ## Single Page App
 The single page app is served from the root of [localhost:8080/]. Since there was not a lot that it was required to do, I did not use any frameworks, but just included a set of static files in the directory `app/spa`. The HTML file was based on another simple text-based app from one of my repositories, and the main logic in `app/spa/js/main.js` is to draw an array of 81 integers on a sudoku board.
@@ -44,7 +44,7 @@ This code only works if a mono-space font is used, so there are some obvious dra
 ### Level 2
 1. Single command: See above
 2. Unit testing: No additional tests were made for the app itself.
-3. Nginx: I did not get very far researching this at (https://nginx.org/en/docs/beginners_guide.html). This seems like a major topic that I should just admit I don't yet have much experience with. This was the most significant roadblock preventing me from completing the first two levels.
+3. Nginx: I did not get very far researching this at https://nginx.org/en/docs/beginners_guide.html. This seems like a major topic that I should just admit I don't yet have much experience with. This was the most significant roadblock preventing me from completing the first two levels.
 4. Load the board: The site loads the board very quickly
 5. Progress spinner: This works in theory, but only if there is an artificial delay on calling the API. There is a button specifically for showing the loading animation.
 6. Reload: The reload button works as expected.

@@ -2,6 +2,10 @@
   "name": "bsm-sudoku",
   "version": "1.0.0",
   "description": "BSM sudoku coding project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quantumduck/bsm-sudoku"
+  },
   "main": "app/app.js",
   "scripts": {
     "test": "./node_modules/.bin/jasmine-node spec"
