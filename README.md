@@ -34,10 +34,10 @@ This code only works if a mono-space font is used, so there are some obvious dra
 ## Acceptance Criteria
 
 ### Level 1
-1. Single command: I had trouble figuring out the conventional way to build and run apps using npm. `npm install` will build the app, but `npm test` is required to run the tests. This could be fixed by adding a `build.sh` script
+1. Single command: I had trouble figuring out the conventional way to build and run apps using npm. `npm install` will build the app, but `npm test` is required to run the tests. This could be fixed by adding a `build.sh` script that calls both.
 2. Tests: I made a test to see that the generator produced a valid grid, which is the only exported function in the file. The test is not ideal, since it requires a helper function with some complicated logic. This code could be moved to another file with its own tests. There are currently no tests for the express app itself.
 3. Request: The API can be accessed using `curl http://localhost:8080/sudoku/board`
-4. Speed: The request is much faster than 500ms when run from localhost
+4. Speed: The request is much faster than 500ms when run from localhost.
 5. Validity: The algorithm checks the validity of each number as it is put into the array.
 6. Documentation: This file documents the steps to build and run the app.
 
@@ -46,8 +46,8 @@ This code only works if a mono-space font is used, so there are some obvious dra
 2. Unit testing: No additional tests were made for the app itself.
 3. Nginx: I did not get very far researching this at [https://nginx.org/en/docs/beginners_guide.html]. This seems like a major topic that I should just admit I don't yet have much experience with. This was the most significant roadblock preventing me from completing the first two levels.
 4. Load the board: The site loads the board very quickly
-5. Progress spinner: This works in theory, but only if there is an artificial delay on calling the API
-6. Reload:
+5. Progress spinner: This works in theory, but only if there is an artificial delay on calling the API. There is a button specifically for showing the loading animation.
+6. Reload: The reload button works as expected.
 7. Validity: see above
 8. Documentation: see above
 
