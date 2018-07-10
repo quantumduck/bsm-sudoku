@@ -6,9 +6,24 @@ var app = express();
 var fs = require("fs");
 var spaRoot = path.join(__dirname, 'spa');
 
-app.get('/sudoku/board', function (req, res) {
+function parseQuery(q) {
+
+}
+
+app.get('/query', function(req, res) {
   res.set('Content-Type', 'application/json');
-  res.end(JSON.stringify(sudoku.get()));
+  res.end(JSON.stringify(req.query));
+});
+
+app.get('/sudoku/board', function (req, res) {
+  var result = sudoku.get(req.query);
+  if (result.error) {
+    res.status(400);
+    res.send(result.error);
+  } else {
+    res.set('Content-Type', 'application/json');
+    res.end(JSON.stringify(result.grid));
+  }
 });
 
 app.get('/', function (req, res) {

@@ -1,24 +1,43 @@
-exports.get = function() {
+exports.get = function(frozenVals) {
+  console.log(frozenVals);
   var i = 0;
   var iter = 0;
-  var grid = getEmptyGrid();
+  var grid = getEmptyGrid(frozenVals);
+  var useFullGrid = frozenVals && Object.keys(frozenVals).length > 0
+    ? true : false;
+  if (!isValidInitialGrid(grid)) {
+    return {error: "Impossible configuration"};
+  }
   while (i < 81) {
     iter += 1;
     if (grid[i].choices.length === 0) {
+      // console.log(i, "no choices");
       grid[i] = getEmptySquare();
       i -= 1;
+      while (grid[i] && grid[i].frozen) {
+        i -= 1;
+      }
+      if (i < 0) {
+        return {error: "No solution."};
+      }
       removeCurrentChoice(grid, i);
     } else {
       grid[i].value = getRandChoice(grid, i);
-      if (isValid(grid, i)) {
+      // console.log(i, "random choice", grid[i].value);
+      if (isValid(grid, i, useFullGrid)) {
+        // console.log(i, "isValid");
         i += 1;
+        while (grid[i] && grid[i].frozen) {
+          i += 1;
+        }
       } else {
+        // console.log(i, "remove choice", grid[i].value);
         removeCurrentChoice(grid, i)
       }
     }
   }
   console.log(`iterations: ${iter}`);
-  return grid.map((c) => c.value);
+  return {grid: grid.map((c) => c.value)};
 }
 
 function getRandChoice(grid, index) {
@@ -31,12 +50,31 @@ function removeCurrentChoice(grid, index) {
   grid[index].choices = grid[index].choices.filter((e) => e !== choice);
 }
 
-function getEmptyGrid() {
+function getEmptyGrid(frozenVals) {
   var grid = [];
   for (var i = 0; i < 81; i++) {
-    grid.push(getEmptySquare());
+    var frozenVal = getFrozenVal(frozenVals, i);
+    if (frozenVal) {
+      grid.push({
+        value: frozenVal,
+        choices: [frozenVal],
+        frozen: true
+      });
+    } else {
+      grid.push(getEmptySquare());
+    }
   }
   return grid;
+}
+
+function getFrozenVal(frozenVals, index) {
+  if (frozenVals && frozenVals["c" + index]) {
+    var v = parseInt(frozenVals["c" + index]);
+    if (v >= 1 && v <= 9) {
+      return v
+    }
+  }
+  return 0;
 }
 
 function getEmptySquare() {
@@ -55,12 +93,13 @@ function getBoxIndex(i) {
   return 3 * parseInt(i / 27) + parseInt((i % 9) / 3);
 }
 
-function isValid(grid, index) {
+function isValid(grid, index, useFullGrid) {
   var ri = getRowIndex(index);
   var ci = getColIndex(index);
   var bi = getBoxIndex(index);
-  for (var i = 0; i < index; i++) {
-    if (grid[i].value === grid[index].value) {
+  var stopIndex = useFullGrid ? 81 : index;
+  for (var i = 0; i < stopIndex; i++) {
+    if (i !== index && grid[i].value === grid[index].value) {
       if (getRowIndex(i) === getRowIndex(index)) {
         return false;
       } else if (getColIndex(i) === getColIndex(index)) {
@@ -68,6 +107,15 @@ function isValid(grid, index) {
       } else if (getBoxIndex(i) === getBoxIndex(index)) {
         return false;
       }
+    }
+  }
+  return true;
+}
+
+function isValidInitialGrid(grid) {
+  for (var i = 0; i < 81; i++) {
+    if (grid[i].value && !isValid(grid, i, true)) {
+      return false
     }
   }
   return true;
